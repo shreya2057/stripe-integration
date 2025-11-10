@@ -1,4 +1,4 @@
-import { StripeElement } from "@/components/common/stripe";
+import { ReactStripe } from "@/components/stripe";
 
 export default function Dashboard() {
   const amount = 1000;
@@ -17,7 +17,7 @@ export default function Dashboard() {
           </div>
         </div>
         <div className="flex flex-col gap-4 flex-[60%] h-full items-center justify-center">
-          <StripeElement amount={amount} />
+          <ReactStripe amount={amount} />
         </div>
       </div>
     </div>

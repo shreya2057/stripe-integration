@@ -1,8 +1,7 @@
-"use client";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe, StripeElementsOptions } from "@stripe/stripe-js";
 
-const stripePromise = loadStripe(
+export const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY || "",
   {
     locale: "auto",
