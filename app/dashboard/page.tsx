@@ -1,3 +1,4 @@
+"use client";
 import { ReactStripe } from "@/components/stripe";
 
 export default function Dashboard() {

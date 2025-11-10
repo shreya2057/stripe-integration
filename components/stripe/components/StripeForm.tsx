@@ -1,34 +1,36 @@
 "use client";
 
-import { PaymentElement } from "@stripe/react-stripe-js";
-// import { useStripePayment } from "../hooks/useStripePayment";
+import {
+  PaymentElement,
+  useElements,
+  useStripe,
+} from "@stripe/react-stripe-js";
 import { StripeFormFooter } from "./StripeFormFooter";
-import { StripeErrorMessage } from "./StripeErrorMessage";
-import { Stripe, StripeElements } from "@stripe/stripe-js";
+import { useState } from "react";
+import { StripeFormSkeleton } from "./StripeFormSkeleton";
 
-export const StripeForm = ({ stripe }: { stripe: Stripe }) => {
-  // const { isProcessing, errorMessage, handleSubmit } = useStripePayment();
-
+export const StripeForm = () => {
+  const [isReady, setIsReady] = useState(false);
+  const stripe = useStripe();
   return (
     <div className="w-full flex flex-col gap-4 items-center justify-center">
       <form
         // onSubmit={handleSubmit}
         className="w-full flex flex-col gap-4 items-center justify-center"
       >
-        <div className="flex flex-col gap-4 bg-white rounded-lg p-6 border border-gray-200 items-center justify-center shadow-md">
+        <div className="flex flex-col bg-white rounded-lg py-6 px-3 border border-gray-200 items-center shadow-md">
           <PaymentElement
-            id="payment-element"
-            className="w-96"
-            options={{
-              layout: "tabs",
-            }}
+            onReady={() => setIsReady(true)}
+            className="w-96 mt-auto"
           />
-          {/* <StripeErrorMessage message={errorMessage} /> */}
-          <div className="flex w-full px-4">
+          {!isReady && <StripeFormSkeleton />}
+          <div className="flex w-full p-4 mt-auto">
             <button
               type="submit"
-              className="w-full bg-indigo-700 text-white p-3 rounded-md text-sm"
-              disabled={!stripe}
+              disabled={!stripe || !isReady}
+              className={
+                "w-full p-3 rounded-md text-sm font-medium transition-all bg-indigo-700  text-white"
+              }
             >
               Pay Now
             </button>

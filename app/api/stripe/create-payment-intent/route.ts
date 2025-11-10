@@ -16,7 +16,7 @@ export interface ErrorResponse {
 }
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  typescript: true,
+  apiVersion: "2025-10-29.clover",
 });
 
 export async function POST(request: NextRequest) {
@@ -43,7 +43,6 @@ export async function POST(request: NextRequest) {
       clientSecret: paymentIntent.client_secret!,
     });
   } catch (error) {
-    console.error(error);
     return NextResponse.json(
       { error: "Failed to create payment intent" },
       { status: 500 }

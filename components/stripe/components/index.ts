@@ -1,1 +1,1 @@
-export { StripeElement } from "./StripeElement";
+export { StripeForm } from "./StripeForm";

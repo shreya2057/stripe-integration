@@ -3,7 +3,7 @@ import { StripeProvider } from "@/provider/StripeProvider";
 import { useCreatePaymentIntent } from "@/services/hooks";
 import { ImSpinner } from "react-icons/im";
 import { ToastContainer } from "react-toastify";
-import { StripeElement } from "./components";
+import { StripeForm } from "./components";
 
 export const ReactStripe = ({ amount }: { amount: number }) => {
   const { data: clientSecret, isPending } = useCreatePaymentIntent(amount);
@@ -14,7 +14,7 @@ export const ReactStripe = ({ amount }: { amount: number }) => {
         <ImSpinner className="animate-spin" />
       ) : (
         <StripeProvider clientSecret={clientSecret}>
-          <StripeElement />
+          <StripeForm />
         </StripeProvider>
       )}
       <ToastContainer />
