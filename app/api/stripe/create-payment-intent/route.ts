@@ -1,6 +1,5 @@
-import { stripe } from "@/utils";
 import { NextRequest, NextResponse } from "next/server";
-import Stripe from "stripe";
+import { Stripe } from "stripe";
 
 export interface PaymentIntentRequest {
   amount: number;
@@ -15,6 +14,10 @@ export interface PaymentIntentResponse {
 export interface ErrorResponse {
   error: string;
 }
+
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+  typescript: true,
+});
 
 export async function POST(request: NextRequest) {
   try {
@@ -31,9 +34,7 @@ export async function POST(request: NextRequest) {
       amount,
       currency: currency || "usd",
       description,
-      automatic_payment_methods: {
-        enabled: true,
-      },
+      payment_method_types: ["card"],
       metadata: {
         userId: "user_123",
       },
@@ -42,6 +43,7 @@ export async function POST(request: NextRequest) {
       clientSecret: paymentIntent.client_secret!,
     });
   } catch (error) {
+    console.error(error);
     return NextResponse.json(
       { error: "Failed to create payment intent" },
       { status: 500 }
