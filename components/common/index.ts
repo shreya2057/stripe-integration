@@ -1,1 +1,1 @@
-export * from "./stripe/CheckoutForm";
+export * from "./stripe";

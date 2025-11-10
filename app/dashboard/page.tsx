@@ -1,9 +1,4 @@
-"use client";
-import { CheckoutForm } from "@/components/common";
 import { StripeElement } from "@/components/common/stripe";
-import { StripeProvider } from "@/provider/StripeProvider";
-import { useEffect, useState } from "react";
-import Stripe from "stripe";
 
 export default function Dashboard() {
   const amount = 1000;

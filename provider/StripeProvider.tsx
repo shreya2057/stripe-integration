@@ -1,4 +1,4 @@
-// import { Elements } from "@stripe/react-stripe-js";
+"use client";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe, StripeElementsOptions } from "@stripe/stripe-js";
 
@@ -9,7 +9,6 @@ const stripePromise = loadStripe(
     developerTools: {
       assistant: { enabled: false },
     },
-    betas: [],
   }
 );
 

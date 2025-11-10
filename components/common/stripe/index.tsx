@@ -1,19 +1,21 @@
+"use client";
+
+import { FormStripe } from "@/components/form/FormStripe";
 import { StripeProvider } from "@/provider/StripeProvider";
-import { CheckoutForm } from "./CheckoutForm";
-import { useEffect, useState } from "react";
 import { useCreatePaymentIntent } from "@/services/hooks";
+import { ImSpinner } from "react-icons/im";
 
 export const StripeElement = ({ amount }: { amount: number }) => {
   const { data: clientSecret, isPending } = useCreatePaymentIntent(amount);
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans w-full">
-      {clientSecret ? (
-        <StripeProvider clientSecret={clientSecret}>
-          <CheckoutForm />
-        </StripeProvider>
+      {isPending ? (
+        <ImSpinner className="animate-spin" />
       ) : (
-        <div>Loading...</div>
+        <StripeProvider clientSecret={clientSecret}>
+          <FormStripe />
+        </StripeProvider>
       )}
     </div>
   );
