@@ -1,5 +1,41 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Stripe Payment Integration
+
+This project includes a complete Stripe payment integration with a modern checkout experience.
+
+### Features
+
+- 🎨 Modern, responsive dashboard UI
+- 💳 Secure Stripe payment processing
+- ✅ Payment success page with receipt details
+- 🔄 Real-time payment status updates
+- 🎯 TypeScript type safety throughout
+- 📱 Mobile-responsive design
+
+### Environment Variables
+
+Create a `.env.local` file in the root directory with the following variables:
+
+```env
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=your_stripe_publishable_key
+STRIPE_SECRET_KEY=your_stripe_secret_key
+```
+
+### Pages
+
+- **Dashboard** (`/dashboard`) - Main dashboard with checkout form
+- **Checkout** (`/dashboard/checkout`) - Stripe payment page
+- **Success** (`/payments/success`) - Payment confirmation page
+
+### Usage
+
+1. Navigate to `/dashboard`
+2. Enter the payment amount (in cents) and parking ID
+3. Click "Proceed to Checkout"
+4. Complete the payment using Stripe's secure form
+5. View confirmation on the success page
+
 ## Getting Started
 
 First, run the development server:
